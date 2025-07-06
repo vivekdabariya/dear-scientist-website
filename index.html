@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dear Scientist Explorer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #101820;
+      color: #f2f2f2;
+      padding: 20px;
+    }
+    h1 {
+      color: #fdb813;
+    }
+    .fact-box {
+      background-color: #1e2a38;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 5px solid #fdb813;
+      border-radius: 8px;
+    }
+    input, textarea, select, button {
+      margin: 5px 0;
+      padding: 8px;
+      border: none;
+      border-radius: 5px;
+      width: 100%;
+    }
+    button {
+      background-color: #fdb813;
+      color: #101820;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🚀 Dear Scientist Content Explorer</h1>
+
+  <label for="category">Choose Category:</label>
+  <select id="category">
+    <option>Space</option>
+    <option>Geology</option>
+    <option>Culture</option>
+    <option>Current Affairs</option>
+  </select>
+
+  <label for="fact">Enter your fact:</label>
+  <textarea id="fact" rows="4"></textarea>
+
+  <button onclick="addFact()">➕ Add Fact</button>
+
+  <h2>🧠 All Facts:</h2>
+  <div id="factList"></div>
+
+  <script>
+    const factList = [];
+
+    function addFact() {
+      const category = document.getElementById("category").value;
+      const content = document.getElementById("fact").value;
+      if (content.trim() === "") {
+        alert("Please enter a fact!");
+        return;
+      }
+
+      const fact = { category, content };
+      factList.push(fact);
+      displayFacts();
+      document.getElementById("fact").value = "";
+    }
+
+    function displayFacts() {
+      const list = document.getElementById("factList");
+      list.innerHTML = "";
+      factList.forEach((fact, index) => {
+        list.innerHTML += `
+          <div class="fact-box">
+            <strong>Category:</strong> ${fact.category}<br>
+            <strong>Fact:</strong> ${fact.content}
+          </div>
+        `;
+      });
+    }
+  </script>
+
+</body>
+</html>
